@@ -1,2 +1,2 @@
-# API Rest: Spring Boot(Authentication with JWT and Spring Security), JPA with MySQL, Swagger and Angular 12 UI
+# API Rest: Spring Boot(Authentication with JWT and Spring Security), JPA with MySQL, Swagger, Boostrap 5 and Angular 12
  
