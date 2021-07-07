@@ -1,1 +1,25 @@
-<p>profile works!</p>
+<div class="container" *ngIf="currentUser">
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">{{ currentUser.username }} Profile</h1>
+      <p class="col-md-8 fs-4"><strong>Token:</strong>
+        {{ currentUser.accessToken.substring(0, 20) }} ...
+        {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}</p>
+      <p class="col-md-8 fs-4"><strong>Email:</strong>
+        {{ currentUser.email }}</p>
+    </div>
+  </div>
+
+  <div class="row align-items-md-stretch">
+    <div class="col-md-12">
+      <div class="h-100 p-5 text-white bg-dark rounded-3">
+        <h2>Roles: </h2>
+        <ul>
+          <li *ngFor="let role of currentUser.roles">
+            {{ role }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
