@@ -14,6 +14,7 @@ import com.resume.app.dtos.person.PersonDto;
 import com.resume.app.dtos.person.PersonEditDto;
 import com.resume.app.dtos.person.PersonListDto;
 import com.resume.app.entities.Person;
+import com.resume.app.exceptions.BadRequestException;
 import com.resume.app.exceptions.NotFoundException;
 import com.resume.app.mappers.PersonMapper;
 import com.resume.app.repositories.PersonRepository;
@@ -37,6 +38,13 @@ public class PersonService {
 	 * @return
 	 */
 	public PersonEditDto create(PersonEditDto dto) {
+
+		 personRepository.findByFirstNameAndLastNameAllIgnoreCase(dto.getFirstName(), dto.getLastName())
+		 .ifPresent(s -> {
+		 		throw  new BadRequestException(String.format(Constants.MESSAGE_PERSON_EXISTS, dto.getFirstName(), dto.getLastName()));
+		 		}
+		 );
+
 		Person entity = personMapper.MapEditDtoToEntity(dto);
 
 		return personMapper.MapEntityToEditDto(personRepository.save(entity));
@@ -67,15 +75,9 @@ public class PersonService {
 		Person entity = personRepository.findById(dto.getId()).orElseThrow(
 				() -> new NotFoundException(String.format(Constants.MESSAGE_ELEMENT_NOT_FOUND, dto.getId())));
 
-		entity.setFirstName(dto.getFirstName());
-		entity.setLastName(dto.getLastName());
-		entity.setBirthday(dto.getBirthday());
-		entity.setEmail(dto.getEmail());
-		entity.setAddres(dto.getAddres());
-		entity.setEmail(dto.getEmail());
-		entity.setTelephone(dto.getTelephone());
-		entity.setMobile(dto.getMobile());
+		entity = personMapper.MapEditDtoToEntity(dto);
 
+		
 		return personMapper.MapEntityToEditDto(personRepository.save(entity));
 	}
 

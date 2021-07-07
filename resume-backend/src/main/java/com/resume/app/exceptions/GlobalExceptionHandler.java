@@ -21,12 +21,22 @@ public class GlobalExceptionHandler {
     }
     
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ExceptionResponse> customException(NotFoundException ex) {
+    public ResponseEntity<ExceptionResponse> notFoundException(NotFoundException ex) {
         ExceptionResponse response=new ExceptionResponse();
         response.setStatusCode(HttpStatus.NOT_FOUND.value());
         response.setMessage(ex.getMessage());
         response.setTimestamp(LocalDateTime.now());
 
         return new ResponseEntity<ExceptionResponse>(response, HttpStatus.NOT_FOUND);
+    }
+    
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ExceptionResponse> badRequestException(BadRequestException ex) {
+        ExceptionResponse response=new ExceptionResponse();
+        response.setStatusCode(HttpStatus.BAD_REQUEST.value());
+        response.setMessage(ex.getMessage());
+        response.setTimestamp(LocalDateTime.now());
+
+        return new ResponseEntity<ExceptionResponse>(response, HttpStatus.BAD_REQUEST);
     }
 }

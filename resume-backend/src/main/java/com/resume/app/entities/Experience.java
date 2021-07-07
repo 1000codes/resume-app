@@ -17,7 +17,9 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
@@ -25,6 +27,8 @@ import lombok.Setter;
 @Table(name = "experiences")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Experience extends AuditEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

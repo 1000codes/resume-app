@@ -7,13 +7,17 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Embeddable
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PersonSkillId implements Serializable{
 
 	@Column(name = "person_id")
@@ -21,16 +25,6 @@ public class PersonSkillId implements Serializable{
 
 	@Column(name = "skill_id")
 	private Long skillId;
-
-	public PersonSkillId() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	public PersonSkillId(Long personId, Long skillId) {
-		this.personId = personId;
-		this.skillId = skillId;
-	}
 
 	@Override
 	public boolean equals(Object o) {
